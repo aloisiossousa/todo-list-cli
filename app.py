@@ -2,7 +2,7 @@ tarefas = []
 
 while True:
 
-    print("n\---Menu To-Do List---")
+    print("---Menu To-Do List---")
     print("1 - Ver tarefas")
     print("2 - Adicionar tarefa")
     print("3 - Remover tarefa")
@@ -11,16 +11,25 @@ while True:
     escolha = input("Escolha uma opção: (1, 2, 3, 4): ")
     
     if escolha == "1":
+        print("\n---Suas tarefas---")
         if not tarefas:
-            print("Você não tem tarefas na lista")
+            print("\nVocê não tem tarefas na lista")
         else:
             for i, tarefa in enumerate(tarefas):
-                print(f" {i + 1}. {tarefa}")
+                descricao = tarefa["descricao"]
+                status = tarefa["status"]
+                print(f" {i + 1}. {descricao} - [{status}")
 
     elif escolha == "2":
-        nova_tarefa = input("Digite a descrição da nova tarefa: ")
+        nova_tarefa_desc = input("Digite a descrição da nova tarefa: ")
+
+        nova_tarefa = {
+            "descricao": nova_tarefa_desc,
+            "status": "pendente"
+        }
+
         tarefas.append(nova_tarefa)
-        print(f"Tarefa '{nova_tarefa}'adicionada com sucesso!")
+        print(f"Tarefa '{nova_tarefa_desc}' adicionada com sucesso!")
     
     elif escolha == "3":
         print("\n----Remover tarefa----")
@@ -28,7 +37,7 @@ while True:
             print("Você não tem tarefas para remover")
         else:
             for i, tarefa in enumerate(tarefas):
-                print(f" {i + 1}. {tarefa}")
+                print(f" {i + 1}. {tarefa['descricao']} - [{tarefa['status']}]")
 
             try:
                 indice_str = input("Digite o número da tarefa que deseja remover: ")
@@ -36,7 +45,7 @@ while True:
 
                 tarefa_removida = tarefas.pop(indice_str)
 
-                print(f"Tarefa '{tarefa_removida}' removida com sucesso!")
+                print(f"Tarefa '{tarefa_removida['descricao']}' removida com sucesso!")
             except ValueError:
                 print("Erro: Digite um número válido")
             except IndexError:
