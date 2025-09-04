@@ -6,9 +6,10 @@ while True:
     print("1 - Ver tarefas")
     print("2 - Adicionar tarefa")
     print("3 - Remover tarefa")
-    print("4 - Sair")
+    print("4 - Marcar tarefa como concluida")
+    print("5 - Sair")
 
-    escolha = input("Escolha uma opção: (1, 2, 3, 4): ")
+    escolha = input("Escolha uma opção: (1, 2, 3, 4, 5): ")
     
     if escolha == "1":
         print("\n---Suas tarefas---")
@@ -53,7 +54,34 @@ while True:
 
 
     elif escolha == "4":
+        print("\n---- Marcar tarefa como concluida ----")
+
+        if not tarefas:
+            print("Não há tarefas para marcar")
+
+        else:
+            for i, tarefa in enumerate(tarefas):
+                print(f"{i+1}. {tarefa['descricao']} [{tarefa['status']}]")
+
+
+            try:
+                indice_str = input("Digite o número da tarefa que deseja marcar como concluida: ")
+                indice_str = int(indice_str) -1
+
+                if tarefas[indice_str]['status'] == "Concluido":
+                    print("Essa tarefa já foi marcada como concluida.")
+                
+                else: 
+                    tarefas[indice_str]['status'] = "Concluido"
+                    print(f"Tarefa '{tarefas[indice_str]['descricao']}' marcada como concluida")
+
+            except ValueError:
+                print("Erro: Digite um número válido")
+            except IndexError:
+                print("Erro: o número da tarefa não está na lista")                
+
+
+    elif escolha == "5":
         print("\n[Ação] - Obrigado por usar o To-Do List!")
         break
-    else:
-        print("\n[Ação] - Opção inválida! Tente novamente.")
+   
