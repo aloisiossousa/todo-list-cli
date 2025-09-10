@@ -1,0 +1,10 @@
+[
+    {
+        "descricao": "varrer casa",
+        "status": "pendente"
+    },
+    {
+        "descricao": "limpar casa",
+        "status": "pendente"
+    }
+]

@@ -1,4 +1,17 @@
-tarefas = []
+import json
+
+def carregar_tarefa():
+    try:
+        with open('tarefas.json', 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return[]
+
+def salvar_tarefas(lista_de_tarefas):
+    with open('tarefas.json', 'w') as f:
+        json.dump(lista_de_tarefas, f, indent=4)
+
+tarefas = carregar_tarefa()
 
 while True:
 
@@ -30,7 +43,9 @@ while True:
         }
 
         tarefas.append(nova_tarefa)
+        salvar_tarefas(tarefas)
         print(f"Tarefa '{nova_tarefa_desc}' adicionada com sucesso!")
+        
     
     elif escolha == "3":
         print("\n----Remover tarefa----")
@@ -50,7 +65,9 @@ while True:
             except ValueError:
                 print("Erro: Digite um número válido")
             except IndexError:
-                print("Erro: o número da tarefa não está na lista")                
+                print("Erro: o número da tarefa não está na lista")  
+
+            salvar_tarefas(tarefa)              
 
 
     elif escolha == "4":
@@ -78,7 +95,9 @@ while True:
             except ValueError:
                 print("Erro: Digite um número válido")
             except IndexError:
-                print("Erro: o número da tarefa não está na lista")                
+                print("Erro: o número da tarefa não está na lista")  
+
+            salvar_tarefas(tarefa)              
 
 
     elif escolha == "5":
