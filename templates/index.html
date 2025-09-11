@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha lista de tarefas</title>
+    <style>
+        body { font-family: sans-serif; }
+        .tarefa { border: 1px solid #ccc; padding: 10px; margin-bottom: 5px; border-radius: 5px; }
+        .concluido { background-color: #e0ffe0; text-decoration: line-through; }
+    </style>
+</head>
+<body>
+    <h1>Minha lista de Tarefas</h1>
+
+    {% for tarefa in lista_de_tarefas %}
+
+        <div class="tarefa {% if tarefa.status == 'concluído' %}concluido{% endif %}">
+            <p>{{ tarefa.descricao }}</p>
+        </div>
+        
+    {% endfor %}
+
+    
+</body>
+</html>
